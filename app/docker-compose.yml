@@ -1,0 +1,17 @@
+  cubes:
+    build: .
+    ports:
+     - "8000:8000"
+    environment:
+      DB_URL: mysql://root:root123@localhost/pdi_db
+    volumes:
+      - ./cubes:/cubes
+  mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: pdi_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d

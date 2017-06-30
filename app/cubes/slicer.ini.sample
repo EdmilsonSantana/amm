@@ -1,0 +1,14 @@
+[workspace]
+model: model.json
+
+[store]
+type: sql
+url: {{DB_URL}}
+model: model.json
+
+[server]
+reload: yes
+log: ./log/cubes.log
+log_level: debug
+allow_cors_origin: *
+port: 8000

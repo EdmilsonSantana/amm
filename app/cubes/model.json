@@ -1,0 +1,78 @@
+{
+    "name": "despesas_parlamentares",
+    "label": "Despesas dos Parlamentares",
+    "description": "",
+    "cubes": [
+        {
+            "name": "despesa",
+            "label": "Despesas",
+            "measures": [
+                { "name": "valorDespesa", "label": "Valor da despesa"}
+            ],
+            "aggregates": [
+                {
+                    "name": "soma_despesa",
+                    "label": "Soma",
+                    "measure": "valorDespesa",
+                    "function": "sum"
+
+                },
+                {
+                    "name": "valor_minimo",
+                    "label": "Mínimo",
+                    "measure": "valorDespesa",
+                    "function": "min"
+                },
+                {
+                    "name": "valor_maximo",
+                    "measure": "valorDespesa",
+                    "label": "Máximo",
+                    "function": "max"
+                },
+                {
+                    "name": "quantidade",
+                    "measure": "valorDespesa",
+                    "label": "Quantidade",
+                    "function": "count"
+                },
+                {
+                    "name": "media",
+                    "measure": "valorDespesa",
+                    "label": "Média",
+                    "function": "avg"
+                }
+            ],
+            "dimensions": ["parlamentar", "uf", "fornecedor", "partido", "tipoDespesa", "data"],
+            "joins": [
+                {"master":"idParlamentar", "detail":"parlamentar.idParlamentar"},
+                {"master":"idUF", "detail":"uf.idUF"},
+                {"master":"idFornecedor", "detail":"fornecedor.idFornecedor"},
+                {"master":"idPartido", "detail":"partido.idPartido"},
+                {"master":"idTipoDespesa", "detail":"tipoDespesa.idTipoDespesa"},
+                {"master":"idData", "detail":"data.idData"}
+            ]
+        }
+    ],
+    "dimensions": [
+        { "name": "parlamentar", "label": "Parlamentar", "label_attribute": "nome", "attributes": ["nome", "legislatura"] },
+        { "name": "uf", "label": "Unidade Federativa", "attributes": ["idUF", "sigla", "cota"] },
+        { "name": "fornecedor", "label": "Fornecedor", "attributes": ["idFornecedor", "descricao", "cpfCnpj"] },
+        { "name": "partido", "label": "Partido", "attributes": ["idPartido", "sigla"] },
+        { "name": "tipoDespesa", "label": "Tipo de Despesa", "attributes": ["idTipoDespesa", "descricao"]},
+        { 
+          "name": "data", 
+          "role": "time",
+          "label": "Data",
+          "levels": [
+            { "name": "year", "attributes": ["ano"], "role": "year", "order_attribute": "ano"},
+            { "name": "month", "attributes": ["mes"], "role": "month", "order_attribute": "mes"},
+            { "name": "day", "attributes": ["dia"], "role": "day", "order_attribute": "dia"  }
+          ],
+          "hierarchies": [
+            {"name": "amd", "levels":["year", "month", "day"]},
+            {"name": "am", "levels":["year", "month"]}
+          ],
+          "default_hierarchy_name": "am"
+        }
+    ]
+}
