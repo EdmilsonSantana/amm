@@ -42,13 +42,13 @@
                     "function": "avg"
                 }
             ],
-            "dimensions": ["parlamentar", "uf", "fornecedor", "partido", "tipoDespesa", "data"],
+            "dimensions": ["parlamentar", "uf", "fornecedor", "partido", "tipodespesa", "data"],
             "joins": [
                 {"master":"idParlamentar", "detail":"parlamentar.idParlamentar"},
                 {"master":"idUF", "detail":"uf.idUF"},
                 {"master":"idFornecedor", "detail":"fornecedor.idFornecedor"},
                 {"master":"idPartido", "detail":"partido.idPartido"},
-                {"master":"idTipoDespesa", "detail":"tipoDespesa.idTipoDespesa"},
+                {"master":"idTipoDespesa", "detail":"tipodespesa.idTipoDespesa"},
                 {"master":"idData", "detail":"data.idData"}
             ]
         }
@@ -58,7 +58,7 @@
         { "name": "uf", "label": "Unidade Federativa", "attributes": ["idUF", "sigla", "cota"] },
         { "name": "fornecedor", "label": "Fornecedor", "attributes": ["idFornecedor", "descricao", "cpfCnpj"] },
         { "name": "partido", "label": "Partido", "attributes": ["idPartido", "sigla"] },
-        { "name": "tipoDespesa", "label": "Tipo de Despesa", "attributes": ["idTipoDespesa", "descricao"]},
+        { "name": "tipodespesa", "label": "Tipo de Despesa", "attributes": ["idTipoDespesa", "descricao"]},
         { 
           "name": "data", 
           "role": "time",

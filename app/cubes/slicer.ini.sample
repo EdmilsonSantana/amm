@@ -5,10 +5,12 @@ model: model.json
 type: sql
 url: {{DB_URL}}
 model: model.json
+schema: pdi_db
 
 [server]
+host: 0.0.0.0
+port: 5000
 reload: yes
 log: ./log/cubes.log
 log_level: debug
 allow_cors_origin: *
-port: 8000
